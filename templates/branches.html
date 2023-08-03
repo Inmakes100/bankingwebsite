@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Branches</title>-->
+<!--</head>-->
+<!--<body>-->
+{% block title %}Branches{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h4>Branches</h4>
+        <form method="get" action="{% url 'wikipedia_redirect' %}">
+            {% csrf_token %}
+            <label for="districtSelect">Select District:</label>
+            <select id="districtSelect" name="district">
+              {% for district in districts %}
+            <option value="{{ district }}">{{ district }}</option>
+              {% endfor %}
+         </select>
+        <input type="submit" value="Go to Wikipedia">
+
+    </div>
+</form>
+{% endblock %}
+<!--</body>-->
+<!--</html>-->

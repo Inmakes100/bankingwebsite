@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+{% block title %}form_Page{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <h4>Form</h4>
+      <form action="" method="post">
+          {% csrf_token %}
+          <label for="id_name">Name:</label>
+          <input type="text" id="id_name" name="name" required><br>
+
+          <label for="id_date_of_birth">Date Of Birth:</label>
+          <input type="date" id="id_date_of_birth" name="date_of_birth" required><br>
+
+          <label for="id_age">Age:</label>
+          <input type="number" id="id_age" name="age" required><br>
+
+<!--          <label for="id_gender">Gender:</label>-->
+<!--          <input type="radio" id="id_male" name="male" value="male" required>-->
+<!--          <label for="id_male">male:</label>-->
+<!--          <input type="radio" id="id_female" name="female" value="female" required>-->
+<!--          <label for="id_female">female:</label><br>-->
+
+      <label for="gender">Gender:</label>
+      <label><input type="radio" name="male">Male</label>
+      <label><input type="radio" name="female">Female</label>
+      <label><input type="radio" name="other">Other</label><br>
+
+<!--          <input type="radio" id="id_female" name="gender" value="female" required>-->
+<!--          <label for="id_female">female:</label><br>-->
+<!--          <select id="id_gender" name="gender" required>-->
+<!--          <option value="male">Male</option>-->
+<!--          <option value="female">Female</option>-->
+<!--          <option value="other">Other</option>-->
+<!--      </select><br>-->
+
+          <label for="id_address">Address:</label>
+          <input type="text" id="id_address" name="address" required><br>
+
+          <label for="id_mail_id">Mail_id:</label>
+          <input type="text" id="id_mail_id" name="mail_id" required><br>
+
+          <label for="id_mob_no">Mob_no:</label>
+          <input type="number" id="id_mob_no" name="mob_no" required><br>
+
+<!--    <label for="id_district">Select District:</label>-->
+<!--    <select id="id_district" name="district" required>-->
+<!--      <option value="" selected="selected">Select district</option>-->
+<!--        <option value="thiruvananthapuram">Thiruvananthapuram</option>-->
+<!--        <option value="eranakulam">Eranakulam</option>-->
+<!--        <option value="kottayam">Kottayam</option>-->
+<!--      {% for district in districts %}-->
+<!--        <option value="{{ district.name }}">{{ district.name }}</option>-->
+<!--      {% endfor %}-->
+<!--    </select><br>-->
+
+<!--    <label for="id_branch">Branch:</label>-->
+<!--    <select id="id_branch" name="branch" required>-->
+<!--      <option value="" selected="selected">Select branch</option>-->
+<!--        <option value="parasala">Parasala</option>-->
+<!--        <option value="kaloor">Kaloor</option>-->
+<!--        <option value="kallara">Kallara</option>-->
+<!--      {% for branch in branches %}-->
+<!--        <option value="{{ branch.name }}">{{ branch.name }}</option>-->
+<!--      {% endfor %}-->
+<!--    </select><br>-->
+
+     <label for="id_district">Select District:</label>
+     <select id="districtDropdown" onchange="updateBranchDropdown()">
+       <option value="" selected="selected">Select district</option>
+       <option value="A">District A</option>
+       <option value="B">District B</option>
+         <option value="C">District C</option>
+     </select><br>
+
+     <label for="id_branch">Select Branch:</label>
+     <select id="branchDropdown">
+     </select><br>
+
+     <script>
+function updateBranchDropdown() {
+    const districtDropdown = document.getElementById('districtDropdown');
+    const branchDropdown = document.getElementById('branchDropdown');
+
+    branchDropdown.innerHTML = '';
+
+     const subBranches = {
+        A: ['B1', 'B2', 'B3'],
+        B: ['C1', 'C2', 'C3'],
+        C: ['D1', 'D2', 'D3'],
+
+    };
+
+     const selectedDistrict = districtDropdown.value;
+     const selectedSubBranches = subBranches[selectedDistrict];
+
+      for (const subBranch of selectedSubBranches) {
+        const option = document.createElement('option');
+        option.value = subBranch;
+        option.text = subBranch;
+        branchDropdown.appendChild(option);
+    }
+}
+</script>
+
+
+
+
+   <label for="id_account_type">Account Type:</label>
+    <select id="id_account_type" name="account_type" required>
+      <option value="" selected="selected">Select type</option>
+      <option value="savings">Savings</option>
+      <option value="current">Current</option>
+    </select><br>
+
+     <label for="id_materials_provide">Materials Provide:</label>
+      <label><input type="checkbox" name="credit_card">Credit Card</label>
+      <label><input type="checkbox" name="debit_card">Debit Card</label>
+      <label><input type="checkbox" name="checkbook">Checkbook</label><br>
+
+<!--    <label for="id_materials_provide">Materials_Provide:</label>-->
+<!--    <select id="id_materials_provide" name="materials_provide" required>-->
+<!--      <option value="credit_card">Credit Card</option>-->
+<!--      <option value="debit_card">Debit Card</option>-->
+<!--    </select><br>-->
+
+   <button type="submit">Submit</button>
+
+   </div>
+</form>
+{% endblock %}
+<!--</body>-->
+<!--</html>-->

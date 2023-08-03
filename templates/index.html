@@ -1,0 +1,73 @@
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<!DOCTYPE HTML>
+<!--
+	Minimaxing by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+      <div class="container">
+          <h2>Introduction to Our Bank</h2>
+          <p>
+              Banking consists of various activities that can be done through financial institutions
+              that will accept deposits from individuals and other entities.
+          </p>
+          <p>
+              These financial institutions will then utilize this money to offer loans and invest it for a profit.
+          </p>
+      </div>
+
+ <nav>
+         <ul>
+             <li><a href="{% url 'login' %}"><button>Login</button></a></li>
+<!--             <a href="{% url 'login' %}"><button>Login</button></a>-->
+             <li><a href="{% url 'register' %}">Register</a></li>
+             <li><a href="{% url 'branches' %}">Branches</a></li>
+         </ul>
+      </nav>
+<select id="branchDropdown">
+    <!-- Options will be dynamically populated based on the selected district -->
+</select>
+
+<script>
+function updateBranchDropdown() {
+    const districtDropdown = document.getElementById('districtDropdown');
+    const branchDropdown = document.getElementById('branchDropdown');
+
+    // Clear existing options in branch dropdown
+    branchDropdown.innerHTML = '';
+
+    // Define the sub branches for each district
+    const subBranches = {
+        A: ['B1', 'B2', 'B3'],
+        B: ['C1', 'C2', 'C3'],
+        // Add more districts and their sub branches here
+    };
+
+    const selectedDistrict = districtDropdown.value;
+    const selectedSubBranches = subBranches[selectedDistrict];
+
+    // Populate branch dropdown with sub branches
+    for (const subBranch of selectedSubBranches) {
+        const option = document.createElement('option');
+        option.value = subBranch;
+        option.text = subBranch;
+        branchDropdown.appendChild(option);
+    }
+}
+</script>
+
+</body>
+</html>
+In this example, we have two dropdowns: one for districts and one for branches. The updateBranchDropdown() function is triggered whenever the district dropdown's value changes. This function clears the existing options in the branch dropdown and then populates it with the sub branches corresponding to the selected district.
+
+You can customize the district and sub-branch options as needed. This example demonstrates the concept, and you can expand upon it to fit your specific requirements.
+
+
+
+
+
+
+Regenerate
+

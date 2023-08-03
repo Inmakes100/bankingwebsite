@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>The Form is accepted</h1>
+    <form action="" method="post">
+  {% csrf_token %}
+        <button type="logout">logout</button>
+    </form>
+<p> <a href="{% url 'demo' %}">Home</a></p>
+</body>
+</html>
